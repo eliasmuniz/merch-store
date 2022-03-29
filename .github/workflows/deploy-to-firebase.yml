@@ -12,6 +12,8 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+        env:
+          PAYPAL_CLIENT_ID: ${{secrets.PAYPAL_CLIENT_ID }}
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
@@ -34,5 +36,4 @@ jobs:
         with:
           args: deploy --only hosting
         env:
-          PAYPAL_CLIENT_ID: ${{secrets.PAYPAL_CLIENT_ID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
